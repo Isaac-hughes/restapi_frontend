@@ -1,11 +1,14 @@
 import './App.css';
+// import { fetchData } from './functions/fetchPost'
+import Posts from './components/Posts'
 
-function App() {
+const App = async () => {
   return (
-    <div className="App">
-      <h1>THis is a test sentence</h1>
+    <div>
+      <h1>This is a test</h1>
+      <Posts></Posts>
     </div>
-  );
+  )
 }
 
 export default App;
