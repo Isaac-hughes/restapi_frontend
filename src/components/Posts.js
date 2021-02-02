@@ -11,15 +11,25 @@ const Posts = () => {
         .then(
             (result) => {
             setIsLoaded(true);
-            setItems(JSON.stringify(result));
-            },
-            (error) => {
+            setItems(result);
+            }  
+        )
+        .catch((error) => {
             setIsLoaded(true);
             setError(error);
-            }
-        )
+            console.log(error)
+        })
     }, [])
     
+
+    const timeChanger = (time) => {
+        let arr = time.split("")
+        arr.splice(10,1)
+        arr.splice(10, 0, " ")
+        arr.splice(16,8)
+        let res = arr.join("")
+        return res
+    }
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -29,12 +39,13 @@ const Posts = () => {
     } else {
         return (
             <div className="postContent">
-                {items.results && items.results.map((item, index) => {
+                {items && items.map((item, index) => {
                 return (
                     <div className="tileContent">
                         <div className="content">
-                            <h1 key={index}>{item.title}</h1>
-                            <p>{item.content}</p>
+                            <h1 key={index} className="postTitle">{item.title}</h1>
+                            <p className="postContent">{item.content}</p>
+                            <p className="postContent">{timeChanger(item.createdAt)}</p>
                         </div>
                     </div>
                 )})}

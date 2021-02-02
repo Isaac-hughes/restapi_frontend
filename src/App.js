@@ -2,10 +2,10 @@ import './App.css';
 // import { fetchData } from './functions/fetchPost'
 import Posts from './components/Posts'
 
-const App = async () => {
+const App = () => {
   return (
     <div>
-      <h1>This is a test</h1>
+      <h1 className="pageTitle">Posts</h1>
       <Posts></Posts>
     </div>
   )
