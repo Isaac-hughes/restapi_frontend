@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 const InputField = () => {
     const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(true);
+    // const [items, setItems] = useState([]);
     const [inputTitle, updateInputTitle] = useState("")
     const [inputContent, updateInputContent] = useState("")
     const [inputUserID, updateInputUserID] = useState("")
@@ -23,12 +23,33 @@ const InputField = () => {
         updateInputUserID(val)
       }
 
-    const handleSubmit = () => {
-        let x = inputTitle
-        let y = inputContent
-        let z = inputUserID
-        let jsonSting = {"author": `${z}`, "title": `${x}`, "content": `${y}`}
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        // let x = inputTitle
+        // let y = inputContent
+        // let z = inputUserID
+        // let jsonString = {"author": `${z}`, "title": `${x}`, "content": `${y}`}
+        // JSON.stringify(jsonString)
+        // console.log(jsonString)
+        savePost()
     }
+
+
+    const savePost = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/posts/${inputUserID}`,
+          {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({author: inputUserID, title: inputTitle, content: inputContent})
+          });
+          const data = await response.json();
+          console.log(data)
+        } catch (error) {
+          console.log("I didn't post")
+          console.log(error)
+        }
+      }
 
     if (error) {
         return <div>Error: {error.message}</div>;

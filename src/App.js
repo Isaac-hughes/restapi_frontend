@@ -5,7 +5,7 @@ import InputField from './components/Input'
 const App = () => {
   return (
     <div>
-      {/* <InputField></InputField> */}
+      <InputField></InputField>
       <h1 className="pageTitle">Posts</h1>
       <Posts></Posts>
     </div>
