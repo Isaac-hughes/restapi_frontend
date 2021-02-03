@@ -4,6 +4,8 @@ const Posts = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
+    
+    
 
     useEffect(() => {
         fetch("http://localhost:5000/posts")
@@ -21,6 +23,7 @@ const Posts = () => {
         })
     }, [])
     
+
 
     const timeChanger = (time) => {
         let arr = time.split("")

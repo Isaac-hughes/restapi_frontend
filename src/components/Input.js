@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const InputField = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(true);
-    // const [items, setItems] = useState([]);
     const [inputTitle, updateInputTitle] = useState("")
     const [inputContent, updateInputContent] = useState("")
     const [inputUserID, updateInputUserID] = useState("")
@@ -25,12 +24,6 @@ const InputField = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // let x = inputTitle
-        // let y = inputContent
-        // let z = inputUserID
-        // let jsonString = {"author": `${z}`, "title": `${x}`, "content": `${y}`}
-        // JSON.stringify(jsonString)
-        // console.log(jsonString)
         savePost()
     }
 
@@ -45,6 +38,10 @@ const InputField = () => {
           });
           const data = await response.json();
           console.log(data)
+
+          updateInputContent("")
+          updateInputTitle("")
+          updateInputUserID("")
         } catch (error) {
           console.log("I didn't post")
           console.log(error)
